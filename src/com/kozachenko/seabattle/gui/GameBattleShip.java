@@ -1,6 +1,5 @@
 package com.kozachenko.seabattle.gui;
 
-import com.kozachenko.seabattle.model.BattleShip;
 import com.kozachenko.seabattle.model.BattleShips;
 import com.kozachenko.seabattle.model.Shot;
 import com.kozachenko.seabattle.model.Shots;
@@ -15,16 +14,16 @@ import java.util.Random;
 
 public class GameBattleShip extends JFrame {
 
-    final String TITLE_OF_PROGRAM = "Battle Ship";
+    final String TITLE_OF_PROGRAM = "LemonSchool Sea Battle";
     final int FIELD_SIZE = 10;
     final int AI_PANEL_SIZE = 400;
     final int AI_CELL_SIZE = AI_PANEL_SIZE / FIELD_SIZE;
-    final int HUMAN_PANEL_SIZE = AI_PANEL_SIZE / 2;
+    final int HUMAN_PANEL_SIZE = AI_PANEL_SIZE/2;
     final int HUMAN_CELL_SIZE = HUMAN_PANEL_SIZE / FIELD_SIZE;
-    final String BTN_INIT = "New game";
+    final String BTN_INIT = "Start new Battle";
     final String BTN_EXIT = "Exit";
-    final String YOU_WON = "YOU WON!";
-    final String AI_WON = "AI WON!";
+    final String YOU_WON = "Flawless victory!";
+    final String AI_WON = "You Loser!";
     final int MOUSE_BUTTON_LEFT = 1; // for mouse listener
     final int MOUSE_BUTTON_RIGHT = 3;
 
@@ -35,24 +34,24 @@ public class GameBattleShip extends JFrame {
     Random random;
     boolean gameOver;
 
-    public GameBattleShip() throws HeadlessException {
+    public GameBattleShip() {
         setTitle(TITLE_OF_PROGRAM);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-
+        initShipsAndShots();
         initLeftPanel();
         initHumanPanel();
 
-        JButton init = new JButton(BTN_INIT); // init button
-        init.addActionListener(new ActionListener() {
+        JButton initButton = new JButton(BTN_INIT); // init button
+        initButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 init();
                 leftPanel.repaint();
                 humanPanel.repaint();
             }
         });
-        JButton exit = new JButton(BTN_EXIT); // exit game button
-        exit.addActionListener(new ActionListener() {
+        JButton exitButton = new JButton(BTN_EXIT); // exit game button
+        exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
@@ -64,8 +63,8 @@ public class GameBattleShip extends JFrame {
 
         JPanel buttonPanel = new JPanel(); // panel for button
         buttonPanel.setLayout(new GridLayout());
-        buttonPanel.add(init);
-        buttonPanel.add(exit);
+        buttonPanel.add(initButton);
+        buttonPanel.add(exitButton);
 
         JPanel rightPanel = new JPanel();         // panel for human ships,
         rightPanel.setLayout(new BorderLayout()); //  scoreboard and buttons
@@ -127,13 +126,16 @@ public class GameBattleShip extends JFrame {
     }
 
     void init() { // init all game object
+        board.setText(BTN_INIT);
+        gameOver = false;
+        random = new Random();
+    }
+
+    private void initShipsAndShots() {
         aiShips = new BattleShips(FIELD_SIZE, AI_CELL_SIZE, true);
         humanShips = new BattleShips(FIELD_SIZE, HUMAN_CELL_SIZE, false);
         aiShots = new Shots(HUMAN_CELL_SIZE);
         humanShots = new Shots(AI_CELL_SIZE);
-        board.setText(BTN_INIT);
-        gameOver = false;
-        random = new Random();
     }
 
     void shootsAI() { // AI shoots randomly

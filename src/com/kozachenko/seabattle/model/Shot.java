@@ -27,8 +27,10 @@ public class Shot {
     public void paint(Graphics g, int cellSize){
         g.setColor(Color.gray);
         if(isShot()){
+            g.setColor(Color.green);
             g.fillRect(x*cellSize + cellSize/2-3, y*cellSize+cellSize/2-3, 8,8);
         } else {
+            g.setColor(Color.CYAN);
             g.drawRect(x*cellSize + cellSize/2-3, y*cellSize+cellSize/2-3, 8,8);
         }
     }
