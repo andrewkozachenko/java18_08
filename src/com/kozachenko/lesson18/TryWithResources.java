@@ -11,7 +11,7 @@ public class TryWithResources {
 
     }
 
-    private static void withTryCatchFinaly(String fileName){
+    private static void withTryCatchFinaly(String fileName) {
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File(fileName));
@@ -27,7 +27,7 @@ public class TryWithResources {
         }
     }
 
-    private static void withTryWithResources(String fileName){
+    private static void withTryWithResources(String fileName) {
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNext()) {
                 System.out.println(scanner.nextLine());
@@ -38,8 +38,10 @@ public class TryWithResources {
     }
 
     private static void tryWithMultipleResources(String srcFile, String dstFile) throws IOException {
-        try (Scanner scanner = new Scanner(new File(srcFile));
-             PrintWriter writer = new PrintWriter(new File(dstFile))) {
+        try (
+                Scanner scanner = new Scanner(new File(srcFile));
+                PrintWriter writer = new PrintWriter(new File(dstFile))
+        ) {
             while (scanner.hasNext()) {
                 writer.print(scanner.nextLine());
             }

@@ -4,7 +4,7 @@ import java.io.File;
 
 public class FileSample {
     public static void main(String[] args) {
-        File file = new File("src/com/kozachenko/lesson16");
+        File file = new File("src/com/kozachenko/lesson16/Main.java");
         System.out.println("Имя файла: " + file.getName());
         System.out.println("Путь: " + file.getPath());
         System.out.println("Абсолютный путь: " + file.getAbsolutePath());

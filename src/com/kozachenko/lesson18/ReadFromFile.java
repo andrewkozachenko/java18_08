@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class ReadFromFile {
     public static void main(String[] args) {
-        String fileName = "input_file.txt";
+        String fileName = "src/input_file.txt";
+        fileReader(fileName);
     }
 
     private static void scannerRead(String fileName) {

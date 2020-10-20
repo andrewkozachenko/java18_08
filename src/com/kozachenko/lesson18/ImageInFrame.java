@@ -10,9 +10,11 @@ import java.net.URL;
 public class ImageInFrame {
     public static void main(String[] args) {
         BufferedImage img = null;
+        String pig = "https://secure.img1-fg.wfcdn.com/im/52705193/resize-h800-w800%5Ecompr-r85/6266/62663384/Sitting+Baby+Pig+Statue.jpg";
         try {
-            img = ImageIO.read(new URL(
-                    "http://www.java2s.com/style/download.png"));
+//            img = ImageIO.read(new URL(
+//                    "http://www.java2s.com/style/download.png"));
+            img = ImageIO.read(new URL(pig));
         } catch (IOException e) {
             e.printStackTrace();
         }
